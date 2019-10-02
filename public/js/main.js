@@ -17,7 +17,7 @@ function addElement() {
   // and give it popup content
   var newDiv = document.createElement("div");
   newDiv.innerHTML +=
-    '<div id="popup" style="margin: 0 auto;  position: relative;width: 750px; height:430px;z-index: 999;display: none;top:0;background-color: #fff;  border: 1px solid #ddd;  border-radius: 5px;  box-shadow: 0 2px 8px #aaa;  overflow: hidden;"><span style=" float:right;cursor: pointer;font-weight: bold;position: absolute;right: 9px;top: 5px; font-size:24px; color:white;" onClick="closePopup()">X</span><a target="_blank" href="https://google.vn"><img src="https://i.imgur.com/tgFmFXp.png"/></a></div>';
+    '<div id="popup" style="margin: 0 auto;  position: relative;width: 750px; height:430px;z-index: 999;display: none;top:0;background-color: #fff;  border: 1px solid #ddd;  border-radius: 5px;  box-shadow: 0 2px 8px #aaa;  overflow: hidden;"><span style=" float:right;cursor: pointer;font-weight: bold;position: absolute;right: 9px;top: 5px; font-size:24px; color:white;" onClick="closePopup()">X</span><a target="_blank" href="https://google.vn"><img src="https://i.imgur.com/jiRfV84.png"/></a></div>';
 
   // add the newly created element and its content into the DOM
   var currentDiv = document.getElementById("main_container");
@@ -27,9 +27,8 @@ function addElement() {
   openPopup();
 }
 const expire = localStorage.getItem("expire");
-console.log();
-
-if (!expire || expire > Date.now()) {
+console.log(new Date().getTime() / 1000 + 86400);
+if (!expire || Date.now() > expire) {
   document.body.onload = addElement;
   localStorage.setItem("expire", new Date().getTime() / 1000 + 86400); //1day
 }
