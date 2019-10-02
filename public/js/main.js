@@ -27,8 +27,9 @@ function addElement() {
   openPopup();
 }
 const expire = localStorage.getItem("expire");
-console.log(expire);
+console.log();
+
 if (!expire || expire > Date.now()) {
   document.body.onload = addElement;
-  localStorage.setItem("expire", Date.now() + 86400); //1day
+  localStorage.setItem("expire", new Date().getTime() / 1000 + 86400); //1day
 }
