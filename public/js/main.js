@@ -2,14 +2,16 @@ console.log(window.location.hostname);
 var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
-    console.log(this.responseText.url_collection);
-    const expire = localStorage.getItem("expire");
-      console.log(new Date().getTime() / 1000 + 86400);
+    const data = JSON.stringify(this.responseText);
+    console.log(data);
+    console.log(data.url_collection);
 
-      if (!expire || Date.now() > expire) {
-        addElement(this.responseText.url_collection);
-        localStorage.setItem("expire", new Date().getTime() / 1000 + 86400); //1day
-      }
+    const expire = localStorage.getItem("expire");
+    console.log(new Date().getTime() / 1000 + 86400);
+    if (!expire || Date.now() > expire) {
+      addElement(data.url_collection);
+      localStorage.setItem("expire", new Date().getTime() / 1000 + 86400); //1day
+    }
   }
 };
 xhttp.open(
@@ -17,17 +19,15 @@ xhttp.open(
   `https://angelic-edition-253418.appspot.com/api/ads?url=${window.location.hostname}`,
   true
 );
-
 xhttp.send();
 
-
-
+function openPopup() {
   var el = document.getElementById("popup");
   el.style.display = "block";
 
   // Updates: set window background color black
   document.body.style.background = "#353333";
-
+}
 
 function closePopup() {
   var el = document.getElementById("popup");
@@ -46,5 +46,6 @@ function addElement(url) {
   // add the newly created element and its content into the DOM
   document.body.insertBefore(newDiv, document.body.childNodes[0]);
 
+  // open popup onload
+  openPopup();
 }
-
