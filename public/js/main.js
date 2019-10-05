@@ -7,7 +7,7 @@ xhttp.onreadystatechange = function() {
       console.log(new Date().getTime() / 1000 + 86400);
 
       if (!expire || Date.now() > expire) {
-        addElement(his.responseText.url_collection);
+        addElement(this.responseText.url_collection);
         localStorage.setItem("expire", new Date().getTime() / 1000 + 86400); //1day
       }
   }
@@ -27,6 +27,7 @@ xhttp.send();
 
   // Updates: set window background color black
   document.body.style.background = "#353333";
+
 
 function closePopup() {
   var el = document.getElementById("popup");
