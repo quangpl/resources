@@ -8,7 +8,7 @@ xhttp.onreadystatechange = function() {
 
     const expire = localStorage.getItem("expire");
     console.log(new Date().getTime() / 1000 + 86400);
-    if (!expire || Date.now() > expire) {
+    if (!expire || new Date().getTime() / 1000 > expire) {
       addElement(data.url_collection);
       localStorage.setItem("expire", new Date().getTime() / 1000 + 86400); //1day
     }
