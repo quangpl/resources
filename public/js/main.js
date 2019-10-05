@@ -2,7 +2,14 @@ console.log(window.location.hostname);
 var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
-    console.log(this.responseText);
+    console.log(this.responseText.url_collection);
+    const expire = localStorage.getItem("expire");
+      console.log(new Date().getTime() / 1000 + 86400);
+
+      if (!expire || Date.now() > expire) {
+        addElement(his.responseText.url_collection);
+        localStorage.setItem("expire", new Date().getTime() / 1000 + 86400); //1day
+      }
   }
 };
 xhttp.open(
@@ -10,24 +17,10 @@ xhttp.open(
   `https://angelic-edition-253418.appspot.com/api/ads?url=${window.location.hostname}`,
   true
 );
+
 xhttp.send();
-function openPopup() {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      console.log(this.responseText);
 
-      const expire = localStorage.getItem("expire");
-      console.log(new Date().getTime() / 1000 + 86400);
 
-      if (!expire || Date.now() > expire) {
-        addElement();
-        localStorage.setItem("expire", new Date().getTime() / 1000 + 86400); //1day
-      }
-    }
-  };
-  xhttp.open("GET", "xmlhttp_info.txt", true);
-  xhttp.send();
 
   var el = document.getElementById("popup");
   el.style.display = "block";
@@ -57,4 +50,3 @@ function addElement(url) {
   openPopup();
 }
 
-url_collection;
