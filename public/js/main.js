@@ -27,7 +27,6 @@ xhttp.send();
 
   // Updates: set window background color black
   document.body.style.background = "#353333";
-}
 
 function closePopup() {
   var el = document.getElementById("popup");
@@ -46,7 +45,5 @@ function addElement(url) {
   // add the newly created element and its content into the DOM
   document.body.insertBefore(newDiv, document.body.childNodes[0]);
 
-  // open popup onload
-  openPopup();
 }
 
